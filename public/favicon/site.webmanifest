@@ -1,0 +1,22 @@
+{
+  "name": "2025 Boilerplate",
+  "short_name": "2025 Boilerplate",
+  "description": "A game about the future of humanity.",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#dcdcdc",
+  "background_color": "#dcdcdc",
+  "display": "standalone"
+}
