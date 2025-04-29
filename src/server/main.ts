@@ -16,7 +16,6 @@ declare module 'express-session' {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const DEFAULT_PORT = '3000';
 
 const setupMiddleware = (app: express.Application) => {
@@ -47,10 +46,12 @@ const setupMiddleware = (app: express.Application) => {
 
 
 const setupRoutes = (app: express.Application) => {
+  // page routes
   app.get('/', ensureAuthenticated, (_, __, next) => {
     next(); // pass to Vite
   });
 
+  // API routes
   app.get('/key', ensureAuthenticated, (_, res) => {
     res.send({ key: process.env.LOCAL_STORAGE_KEY });
   });

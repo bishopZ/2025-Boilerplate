@@ -8,7 +8,6 @@ import { ErrorPage } from './components/ui/error-page';
 import { LoadingSpinner } from './components/ui/loading-spinner';
 import { AppDispatch } from './components/data/store';
 
-
 const App = () => {
   const { score, encryptionKey, loading, error } = useSelector((state: RootState) => state.player);
   const useAppDispatch = () => useDispatch<AppDispatch>();

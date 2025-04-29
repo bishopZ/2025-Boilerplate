@@ -3,11 +3,13 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import crypto from 'crypto';
 import type { Application, RequestHandler } from 'express';
 
+// encryption parameters
 const ITERATIONS = 100000;
 const KEY_LENGTH = 64;
 const DIGEST = 'sha512';
 const LOGIN_PATH = '/login';
 
+// SEO metadata for the login page
 const SEO = {
   title: '2025 Boilerplate',
   author: 'BishopZ',
@@ -16,6 +18,7 @@ const SEO = {
   url: 'https://github.com/bishopz/2025-boilerplate',
 } as const;
 
+// get this from the database
 const fakeUser = {
   name: 'Alice',
   email: 'test',
@@ -25,6 +28,7 @@ const fakeUser = {
 };
 
 type HashFunction = (password: string, salt: string, iterations?: number) => string;
+
 const hashPassword: HashFunction = (password, salt) => {
   return crypto
     .pbkdf2Sync(password, salt, ITERATIONS, KEY_LENGTH, DIGEST)
@@ -49,16 +53,12 @@ export const setupAuthentication = (app: Application) => {
     callback(null, user);
   }));
 
-  passport.serializeUser((user: Express.User, done) => {
-    done(null, user);
-  });
-
-  passport.deserializeUser((user: Express.User, done) => {
-    done(null, user);
-  });
+  // passport requires defining these methods
+  passport.serializeUser((user: Express.User, done) => { done(null, user) });
+  passport.deserializeUser((user: Express.User, done) => { done(null, user) });
 
   app.get(LOGIN_PATH, (_, res) => {
-    res.render('login', { SEO });
+    res.render('login', { SEO }); // render the login page
   });
 
   app.post('/login/password', (req, res, next) => {
@@ -77,7 +77,7 @@ export const setupAuthentication = (app: Application) => {
           next(error);
           return undefined;
         }
-        res.redirect('/');
+        res.redirect('/'); // redirect to the home page
       });
     })(req, res, next);
   });
@@ -92,6 +92,7 @@ export const setupAuthentication = (app: Application) => {
   });
 };
 
+// Middleware to ensure the user is authenticated
 export const ensureAuthenticated: RequestHandler = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();

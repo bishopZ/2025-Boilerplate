@@ -2,15 +2,13 @@ import { configureStore, Middleware } from '@reduxjs/toolkit';
 import playerReducer from './player';
 import { encrypt } from '@/common/encryption';
 import { PlayerState } from './player-actions';
-import { STORAGE_KEY } from '@/common/constants';
+import { LOCAL_STORAGE_ID } from '@/common/constants';
 
-export type GenericObject = Record<string, unknown>;
-
-interface LocalState {
-  player: PlayerState
-}
+type GenericObject = Record<string, unknown>;
+interface LocalState { player: PlayerState}
 
 const saveToLocalStorage: Middleware<GenericObject, LocalState> = storeAPI => next => action => {
+  // debounce to ensure we get the latest state
   setTimeout(() => {
     try {
       const { player } = storeAPI.getState();
@@ -18,7 +16,7 @@ const saveToLocalStorage: Middleware<GenericObject, LocalState> = storeAPI => ne
       if (encryptionKey) {
         const encryptedState = encrypt(JSON.stringify(player), encryptionKey);
         if (encryptedState) {
-          localStorage.setItem(STORAGE_KEY, encryptedState);
+          localStorage.setItem(LOCAL_STORAGE_ID, encryptedState);
         } else {
           console.error('Failed to encrypt state');
         }
@@ -32,9 +30,11 @@ const saveToLocalStorage: Middleware<GenericObject, LocalState> = storeAPI => ne
 
 export const store = configureStore({
   reducer: {
+    // Add additional reducers here
     player: playerReducer
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware()
+    // Add any additional middleware here
     .concat(saveToLocalStorage),
 });
 

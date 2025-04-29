@@ -4,8 +4,9 @@ import { defaultState, initPlayer, playerActions } from './player-actions';
 export const playerSlice = createSlice({
   name: 'player',
   initialState: defaultState,
-  reducers: playerActions,
+  reducers: playerActions, // non-async actions
   extraReducers: builder => {
+    // Handle async actions
     builder
       .addCase(initPlayer.pending, state => {
         state.loading = true;

@@ -8,7 +8,7 @@ import { store } from './components/data/store';
 import { ErrorPage } from './components/ui/error-page';
 import './index.css';
 
-const ErrorFallback = ({ error }: FallbackProps) => (
+export const ErrorFallback = ({ error }: FallbackProps) => (
   <ErrorPage message={error.message} />
 );
 

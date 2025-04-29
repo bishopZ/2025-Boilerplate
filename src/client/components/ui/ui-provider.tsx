@@ -5,6 +5,7 @@ const fonts = {
   body: 'system-ui, Avenir, Helvetica, Arial, sans-serif',
 };
 
+// Chakra Theme support
 const config = defineConfig({
   globalCss: {
     body: {

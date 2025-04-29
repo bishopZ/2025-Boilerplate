@@ -1,7 +1,9 @@
 import { createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { decrypt } from '@/common/encryption';
-import { STORAGE_KEY } from '@/common/constants';
+import { LOCAL_STORAGE_ID } from '@/common/constants';
 
+// with a complicated state object, we'll want to define
+// the schema version so we can handle migrations.
 enum SchemaVersion {
   Initial = 0,
 }
@@ -18,8 +20,11 @@ export const defaultState = {
   error: null as string | null,
 };
 
+// Infer Type from defaultState
 export type PlayerState = typeof defaultState;
 
+// After authentication, the `initPlayer` action requests
+// the encryption key from the server and decrypts the stored state.
 export const initPlayer = createAsyncThunk(
   'player/initPlayer', // namespace
   async () => {
@@ -30,7 +35,7 @@ export const initPlayer = createAsyncThunk(
         return { encryptionKey: null };
       }
       const { key } = await response.json() as Key;
-      const storedState = localStorage.getItem(STORAGE_KEY) ?? null;
+      const storedState = localStorage.getItem(LOCAL_STORAGE_ID) ?? null;
 
       if (!storedState) return { encryptionKey: key };
 
@@ -44,6 +49,7 @@ export const initPlayer = createAsyncThunk(
   }
 );
 
+// Player actions that don't require async.
 export const playerActions = {
   increment: (state: PlayerState) => {
     state.score += 1;
