@@ -57,22 +57,12 @@ const setupRoutes = (app: express.Application) => {
   });
 };
 
-const setupErrorHandling = (app: express.Application) => {
-  const errorHandler: ErrorRequestHandler = (error: Error, _req: Request, res: Response) => {
-    console.error('Server error:', error);
-    res.status(500).send('Internal Server Error');
-  };
-
-  app.use(errorHandler);
-};
-
 const startServer = () => {
   const app = express();
 
   setupMiddleware(app);
   setupAuthentication(app);
   setupRoutes(app);
-  setupErrorHandling(app);
 
   const port = parseInt(process.env.PORT ?? DEFAULT_PORT, BASE);
   const displayPort = new Intl.NumberFormat('en-US', {

@@ -13,7 +13,7 @@ const LOGIN_PATH = '/login';
 const SEO = {
   title: '2025 Boilerplate',
   author: 'BishopZ',
-  description: 'A game about the future of humanity.',
+  description: 'A local-first boilerplate for 2025',
   image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/1365px-African_Bush_Elephant.jpg',
   url: 'https://github.com/bishopz/2025-boilerplate',
 } as const;

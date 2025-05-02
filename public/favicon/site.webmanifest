@@ -1,7 +1,7 @@
 {
   "name": "2025 Boilerplate",
   "short_name": "2025 Boilerplate",
-  "description": "A game about the future of humanity.",
+  "description": "A local-first boilerplate for 2025",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
