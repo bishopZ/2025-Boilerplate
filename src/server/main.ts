@@ -1,5 +1,5 @@
 import { BASE } from '../common/constants';
-import express, { Request, Response, ErrorRequestHandler } from 'express';
+import express from 'express';
 import ViteExpress from 'vite-express';
 import session from 'express-session';
 import { ensureAuthenticated, setupAuthentication } from './authentication';
