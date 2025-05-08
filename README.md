@@ -1,3 +1,5 @@
+A local-first web app boilerplate for 2025
+
 ## Motivation
 
 I release a boilerplate every few years. Boilerplates go a little bit further than the starter projects that each library gives you, yet they land short of being an actual project. They give you a good starting point, if you want this exact mix of technologies. It also suggests good organizational patterns for a scalable code base.
@@ -22,7 +24,6 @@ This boilerplate is right for you if:
 - UI Framework: React
 - State Management: Redux Toolkit
 - React Error Boundary
-- Light/Dark Mode Support
 
 ### Backend
 
@@ -35,11 +36,6 @@ This boilerplate is right for you if:
 
 - Local Storage
 - Crypto Library: Crypto JS
-
-### UI Components
-
-- Design System: Chakra UI
-- Chakra Theme Support
 
 ### Linting and Formatting
 
@@ -77,10 +73,6 @@ I'm thrilled to have finally moved on from the complexities of Webpack. With Vit
 
 TypeScript (TSX) offers numerous benefits over JavaScript (JSX), including better code completion, reduced runtime errors, and improved maintainability. In my experience, writing TSX files is *better* and *faster* than writing JSX file.
 
-### Light/Dark mode support
-
-Implementing light and dark mode support is no longer a nice-to-have, but a table stakes feature for modern web applications. By incorporating this feature from the outset, we ensure that our application continues to support this feature through out it's lifecycle.
-
 ### React Error Boundary
 
 Error boundaries are essential in creating robust and fault-tolerant web applications. By including an example of a React error boundary in the boilerplate, developers can use it as a reference to add error boundries to other places as the application grows.
@@ -101,10 +93,6 @@ After years of Reddit posts proclaiming the death of Redux, I remain a strong ad
 
 To ensure data persistence across browser refreshes and sessions, I've integrated CryptoJS for local storage encryption. This approach allows our application to securely store user data while maintaining seamless usability.
 
-### Chakra UI & Pico
-
-I opted for Chakra UI as the design system due to its clean architecture and minimalism. Unlike older libraries like Bootstrap or Material, Chakra UI offers a more modern and versatile design system that's easy to maintain and extend. I used Pico.css on the login page because it's served as plain HTML.
-
 ### ESlint
 
 I added a very through custom config file for ESLint. It's battle-tested and aims to speed development, ignore problems that aren't real, and maximize the rules that can be automatically fixed by ESLint.
@@ -112,6 +100,18 @@ I added a very through custom config file for ESLint. It's battle-tested and aim
 ### Passport.js
 
 By integrating Passport.js as an example login process, we can demonstrate best practices for authentication without compromising security or scalability. Future improvements will focus on implementing additional features like CSRF protection and login attempts limits, which may require a database solution.
+
+## Choosing a Design System
+
+In today's fast-paced web development landscape, Design Systems have become an essential component of any project. By leveraging a well-crafted design system, developers can ensure consistency, efficiency, and scalability in their application.
+
+While there are many excellent design systems available, including one in our boilerplate seemed like overkill. Different applications require distinct design approaches that may not align with the one-size-fits-all solution of an out-of-the-box boilerplate.
+
+Administrative interfaces may benefit from Cloudscape's intuitive navigation and layout features. While Marketing sites might be better suited to Github's Preview design system, with its emphasis on eye-catching visuals and responsive design.
+
+When selecting a design system consider your project's goals and determine which design systems align best with your requirements. Choose a design system with a strong, active community and an extensive ecosystem of supporting tools, libraries, and documentation. Opt for a system with thorough documentation that covers every aspect, including setup, customization, and best practices. Then  select the design system best suits your development team's experience level and skillset.
+
+If you're uncertain about which design system to implement, refer to our example branch `with-chakra-ui`, where Chakra UI is used as a case study.
 
 ## History: A Journey Through Time
 

@@ -13,8 +13,8 @@ export const playerSlice = createSlice({
         state.error = null;
       })
       .addCase(initPlayer.fulfilled, (state, action: PayloadAction<unknown>) => {
-        state.loading = false;
         Object.assign(state, action.payload);
+        state.loading = false;
       })
       .addCase(initPlayer.rejected, state => {
         state.loading = false;

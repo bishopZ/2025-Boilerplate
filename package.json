@@ -1,9 +1,9 @@
 {
   "name": "2025-boilerplate",
-  "description": "a local-first boilerplate for 2025",
+  "description": "a local-first web app boilerplate for 2025",
   "author": "BishopZ",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -19,7 +19,6 @@
     "start": "NODE_ENV=production tsx src/server/main.ts"
   },
   "dependencies": {
-    "@chakra-ui/react": "3.16.1",
     "@emotion/react": "11.14.0",
     "@reduxjs/toolkit": "2.7.0",
     "cookie-parser": "1.4.7",

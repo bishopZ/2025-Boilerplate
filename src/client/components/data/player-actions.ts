@@ -30,7 +30,6 @@ export const initPlayer = createAsyncThunk(
 
       const decrypted = decrypt(storedState, key);
       const result = JSON.parse(decrypted) as PlayerState;
-
       return { ...result, encryptionKey: key };
     } catch (error) {
       console.error('Failed to fetch player data: Network error', error);

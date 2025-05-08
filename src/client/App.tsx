@@ -1,4 +1,3 @@
-import { Heading, Button, Flex } from '@chakra-ui/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './components/data/store';
 import { increment } from './components/data/player';
@@ -21,27 +20,20 @@ const App = () => {
   if (error) return <ErrorPage message={error} />;
 
   return <>
-    <Flex
-      gap={4}
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      h="100vh"
-      maxW="100vw">
-      {!encryptionKey && <Heading as="h1">Loading...</Heading>}
+    <div className="container" role="main">
+      {!encryptionKey && <h1>Loading...</h1>}
       {encryptionKey && <>
-        <Heading as="h1">
-          Welcome to 2025 Boilerplate! ({score})
-        </Heading>
-        <Button
-          variant="solid"
-          size="sm"
-          mt={4}
+        <header>
+          <h1>Welcome to the 2025 Boilerplate! ({score})</h1>
+        </header>
+        <button
+          className="primary"
+          type="button"
           onClick={() => dispatch(increment())}>
           Next
-        </Button>
+        </button>
       </>}
-    </Flex>
+    </div>
   </>;
 };
 
