@@ -11,6 +11,8 @@ declare module 'express-session' {
   /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
   export interface SessionData {
     // Use this interface to add custom properties to the session
+    // csrfToken: string;
+    // loginAttempts: number;
   }
 }
 
@@ -19,6 +21,7 @@ const __dirname = path.dirname(__filename);
 const DEFAULT_PORT = '3000';
 
 const setupMiddleware = (app: express.Application) => {
+  app.set('trust proxy', 1); // trust first proxy
   app.set('view engine', 'ejs');
   app.engine('html', (path, data, cb) => {
     ejs.renderFile(path, data, {}, (err, str) => {
@@ -39,11 +42,10 @@ const setupMiddleware = (app: express.Application) => {
     saveUninitialized: false,
     cookie: {
       secure: process.env.NODE_ENV === 'production',
-      sameSite: true,
+      sameSite: 'lax',
     },
   }));
 };
-
 
 const setupRoutes = (app: express.Application) => {
   // page routes
@@ -77,6 +79,4 @@ const startServer = () => {
   });
 };
 
-// Start the server
-startServer();
-
+startServer(); // Start the server

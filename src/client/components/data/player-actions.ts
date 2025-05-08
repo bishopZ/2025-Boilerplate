@@ -2,18 +2,7 @@ import { createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { decrypt } from '@/common/encryption';
 import { LOCAL_STORAGE_ID } from '@/common/constants';
 
-// with a complicated state object, we'll want to define
-// the schema version so we can handle migrations.
-enum SchemaVersion {
-  Initial = 0,
-}
-
-interface Key {
-  key: string;
-}
-
 export const defaultState = {
-  schemaVersion: 0 as SchemaVersion,
   score: 0,
   encryptionKey: null as string | null,
   loading: false,
@@ -34,7 +23,7 @@ export const initPlayer = createAsyncThunk(
         console.error('Failed to fetch player data: HTTP error', response.status);
         return { encryptionKey: null };
       }
-      const { key } = await response.json() as Key;
+      const { key } = await response.json() as { key: string; };
       const storedState = localStorage.getItem(LOCAL_STORAGE_ID) ?? null;
 
       if (!storedState) return { encryptionKey: key };

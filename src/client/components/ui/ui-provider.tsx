@@ -2,14 +2,14 @@ import { ChakraProvider, createSystem, defaultConfig, defineConfig } from '@chak
 import { ColorModeProvider } from './color-mode';
 
 const fonts = {
-  body: 'system-ui, Avenir, Helvetica, Arial, sans-serif',
+  base: '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Avenir, Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif',
 };
 
 // Chakra Theme support
 const config = defineConfig({
   globalCss: {
     body: {
-      fontFamily: fonts.body,
+      fontFamily: fonts.base,
       lineHeight: '1.5',
       fontWeight: '400',
       color: 'text.default',
