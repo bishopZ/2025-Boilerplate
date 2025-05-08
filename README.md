@@ -69,47 +69,47 @@ The reasoning for each item is included below.
 
 ## Reasoning
 
-- Vite
+### Vite
 
 I'm thrilled to have finally moved on from the complexities of Webpack. With Vite, I can focus on building modern web applications without worrying about tedious configuration and optimization. As Webpack's popularity waned, Rollup paved the way for Vite's arrival, making it easier than ever to switch to a more streamlined build tool.
 
-- Typescript, React
+### Typescript, React
 
 TypeScript (TSX) offers numerous benefits over JavaScript (JSX), including better code completion, reduced runtime errors, and improved maintainability. In my experience, writing TSX files is *better* and *faster* than writing JSX file.
 
-- Light/Dark mode support
+### Light/Dark mode support
 
 Implementing light and dark mode support is no longer a nice-to-have, but a table stakes feature for modern web applications. By incorporating this feature from the outset, we ensure that our application continues to support this feature through out it's lifecycle.
 
-- React Error Boundary
+### React Error Boundary
 
 Error boundaries are essential in creating robust and fault-tolerant web applications. By including an example of a React error boundary in the boilerplate, developers can use it as a reference to add error boundries to other places as the application grows.
 
-- vite-express, Node, express
+### vite-express, Node, express
 
 Vite's ability to run client and server-side components simultaneously is a game-changer for web development. With vite-express, we can enjoy the flexibility of choosing between Server-Side Rendering (SSR) or Client-Side Rendering (CSR), giving us more freedom in designing our API.
 
-- EJS & SEO
+### EJS & SEO
 
 For easy setting of SEO meta tag values, I chose to use EJS templates on Node.js. While this approach might be replaced with SSR implementation if needed, it provides a lightweight solution for basic SEO needs.
 
-- Redux Toolkit
+### Redux Toolkit
 
 After years of Reddit posts proclaiming the death of Redux, I remain a strong advocate for its benefits. By providing a cleaner syntax for state management, Redux simplifies code complexity and makes it easier to manage global state in complex applications.
 
-- Crypto JS
+### Crypto JS
 
 To ensure data persistence across browser refreshes and sessions, I've integrated CryptoJS for local storage encryption. This approach allows our application to securely store user data while maintaining seamless usability.
 
-- Chakra UI & Pico
+### Chakra UI & Pico
 
 I opted for Chakra UI as the design system due to its clean architecture and minimalism. Unlike older libraries like Bootstrap or Material, Chakra UI offers a more modern and versatile design system that's easy to maintain and extend. I used Pico.css on the login page because it's served as plain HTML.
 
-- ESlint
+### ESlint
 
 I added a very through custom config file for ESLint. It's battle-tested and aims to speed development, ignore problems that aren't real, and maximize the rules that can be automatically fixed by ESLint.
 
-- Passport.js
+### Passport.js
 
 By integrating Passport.js as an example login process, we can demonstrate best practices for authentication without compromising security or scalability. Future improvements will focus on implementing additional features like CSRF protection and login attempts limits, which may require a database solution.
 
