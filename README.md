@@ -114,52 +114,6 @@ When selecting a design system consider your project's goals and determine which
 
 If you're uncertain about which design system to implement, refer to our example branch `with-chakra-ui`, where [Chakra UI](https://chakra-ui.com/) is used as a case study.
 
-## History: A Journey Through Time
-
-As we look back on the evolution of frontend development, it's fascinating to see how technologies have transformed. Let's take a journey through the decades and explore how our industry has grown and adapted.
-
-### The Next.js Era (2021)
-
-Our first boilerplate built with Next.js and TypeScript, marked the beginning of this era. We saw the rise of server-side rendering and static site generation, making it easier to build fast and scalable web applications.
-
-- Next.js: A popular framework for building server-rendered React applications
-- TypeScript, React: The combination of static typing and a powerful UI library
-- Sass: A modern CSS preprocessor for writing efficient stylesheets
-- ESLint: A tool for ensuring code quality and consistency
-
-### The Webpack Revolution (2018)
-
-As Next.js rose to fame, we saw the decline of another era: the Gulp/Grunt vs Webpack debate. In a valiant effort to prove that gulp was better than webpack, our 2018 boilerplate made its last stand.
-
-- Node, express: A powerful combination for building web applications
-- gulp: An old favorite, eventually replaced by more efficient tools like Webpack and Rollup
-- React, Redux: The classic combo for state management and UI composition
-- Bootstrap: A popular CSS framework for styling React components
-- ESLint: Ensuring code quality and consistency
-
-### The Backbone Age (2016)
-
-In the mid-2010s, we saw the rise of client-side rendering and single-page applications. Our 2016 boilerplate was built around these principles, using the power of both React and jQuery to create complex UIs.
-
-- Heroku: A cloud platform for hosting and deploying web applications
-- webpack: The beginning of a new era in frontend tooling
-- Node, express: Building robust web applications with a scalable backend
-- React, Redux: State management and UI composition
-- Backbone: A classic JavaScript library for building complex UIs
-- Bootstrap: Styling React components with CSS flair
-- Sass: Efficient styling with a preprocessor
-- ESLint: Enforcing code quality and consistency
-
-### The jQuery Era (2013)
-
-Our first boilerplate, built in 2013, was a humble beginning. We used the mighty power of jQuery, underscore, and ejs to create our first web applications.
-
-- Node, express: A powerful combination for building web applications
-- jQuery: A legendary JavaScript library for client-side scripting
-- underscore: Helper functions for data manipulation and UI composition
-- ejs: A simple templating engine for rendering dynamic views
-- jade: A templating engine with a more expressive syntax
-
 ## License
 
 MIT
