@@ -8,7 +8,8 @@ import { ColorModeProvider } from './components/ui/color-mode';
 import App from './App';
 import { store } from './components/data/store';
 import { ErrorPage } from './components/ui/error-page';
-import './index.css';
+import './styles/reset.css';
+import './styles/index.css';
 
 export const ErrorFallback = ({ error }: FallbackProps) => (
   <ErrorPage message={error.message} />
