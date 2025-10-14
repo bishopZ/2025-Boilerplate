@@ -101,7 +101,6 @@ By integrating Passport.js as an example login process, we can demonstrate best 
 
 I added a very through custom config file for ESLint. It's battle-tested and aims to speed development, ignore problems that aren't real, and maximize the rules that can be automatically fixed by ESLint.
 
-
 ## Choosing a Design System
 
 In today's fast-paced web development landscape, Design Systems have become an essential component of any project. By leveraging a well-crafted design system, developers can ensure consistency, efficiency, and scalability in their application.
