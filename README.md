@@ -101,14 +101,6 @@ By integrating Passport.js as an example login process, we can demonstrate best 
 
 I added a very through custom config file for ESLint. It's battle-tested and aims to speed development, ignore problems that aren't real, and maximize the rules that can be automatically fixed by ESLint.
 
-## Choosing a Testing Library
-
-// todo
-
-## Choosing a Router
-
-// todo
-
 ## Choosing a Design System
 
 In today's fast-paced web development landscape, Design Systems have become an essential component of any project. By leveraging a well-crafted design system, developers can ensure consistency, efficiency, and scalability in their application.
@@ -120,11 +112,8 @@ Administrative interfaces may benefit from [Cloudscape's](https://cloudscape.des
 When selecting a design system consider your project's goals and determine which design systems align best with your requirements. Choose a design system with a strong, active community and an extensive ecosystem of supporting tools, libraries, and documentation. Opt for a system with thorough documentation that covers every aspect, including setup, customization, and best practices. Then  select the design system that best suits your development team's experience level and skillset.
 
 If you're uncertain about which design system to implement, refer to our example branch `with-chakra-ui`, where [Chakra UI](https://chakra-ui.com/) is used as a case study.
-<<<<<<< HEAD
-=======
 
 ## License
 
 MIT
 
->>>>>>> main
