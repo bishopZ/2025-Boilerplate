@@ -39,12 +39,9 @@ This boilerplate is right for you if:
 - Local Storage
 - Crypto Library: Crypto JS
 
-### Testing
+### Developer Experience
 
 - E2E Testing: Cypress
-
-### Linting and Formatting
-
 - Linter: ESLint
 
 The reasoning for each item is included below.
@@ -154,17 +151,6 @@ Cypress provides reliable end-to-end testing with an excellent developer experie
 ### ESlint
 
 I added a very through custom config file for ESLint. It's battle-tested and aims to speed development, ignore problems that aren't real, and maximize the rules that can be automatically fixed by ESLint.
-
-## Customizing the Design System
-
-This boilerplate includes Chakra UI as a starting point, providing accessible components and a solid foundation for building modern interfaces. However, different applications have different design needs, and you may want to replace or customize the design system.
-
-Administrative interfaces may benefit from [Cloudscape's](https://cloudscape.design/) intuitive navigation and layout features. Marketing sites might be better suited to Github's [Primer](https://primer.style/) design system with its emphasis on eye-catching visuals and responsive design. Developer tools might prefer [Radix UI](https://www.radix-ui.com/) for its unstyled primitives.
-
-When selecting a design system, consider your project's goals and determine which system aligns best with your requirements. Choose one with a strong, active community and thorough documentation covering setup, customization, and best practices. The modular nature of this boilerplate makes it straightforward to replace Chakra UI with your preferred solution.
-
-To remove Chakra UI: uninstall the packages, remove the `ChakraProvider` from `src/client/main.tsx`, and update your page components to use your preferred styling approach.
-
 
 
 # Available Scripts
@@ -304,37 +290,6 @@ E2E tests require:
 - Chrome, Firefox, or Edge browser installed
 - Tests expect server on http://localhost:3000
 
-## Customizing Scripts
-
-You can add custom scripts to `package.json`:
-
-```json
-{
-  "scripts": {
-    "custom-script": "your-command-here"
-  }
-}
-```
-
-Examples of useful custom scripts:
-- `"db:migrate"`: Run database migrations
-- `"db:seed"`: Seed database with test data
-- `"analyze"`: Analyze bundle size
-- `"test:unit"`: Run unit tests (when added)
-
-## Script Chaining
-
-You can run multiple scripts in sequence:
-
-```bash
-npm run lint && npm run type-check && npm run test:e2e
-```
-
-Or in parallel (using a tool like `concurrently`):
-
-```bash
-npx concurrently "npm:lint" "npm:type-check"
-```
 
 ## Environment Variables
 
