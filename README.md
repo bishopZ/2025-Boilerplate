@@ -75,9 +75,11 @@ src/
 │   │   └── ui/            # Reusable UI components
 │   ├── pages/             # Page components (Home, About, etc.)
 │   ├── shared/            # Client-side utilities and constants
+│   ├── styles/            # CSS files
+│   │   ├── reset.css      # CSS reset (Coyier CSS Starter)
+│   │   └── index.css      # Global styles
 │   ├── App.tsx            # Main app component with routing
-│   ├── main.tsx           # App entry point with providers
-│   └── index.css          # Global styles
+│   └── main.tsx           # App entry point with providers
 │
 ├── server/                # Backend Node.js application
 │   ├── config/            # Configuration files (session, constants)
