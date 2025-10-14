@@ -1,16 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from './components/data/store';
-import { increment } from './components/data/player';
-import { useEffect } from 'react';
+import { RootState, AppDispatch } from './components/data/store';
+import { useEffect, lazy, Suspense } from 'react';
 import { initPlayer } from './components/data/player-actions';
 import { ErrorPage } from './components/ui/error-page';
 import { LoadingSpinner } from './components/ui/loading-spinner';
-import { AppDispatch } from './components/data/store';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+
+// Lazy load pages for better performance
+const About = lazy(() => import('./pages/About'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 const App = () => {
-  const { score, encryptionKey, loading, error } = useSelector((state: RootState) => state.player);
-  const useAppDispatch = () => useDispatch<AppDispatch>();
-  const dispatch = useAppDispatch();
+  const { encryptionKey, loading, error } = useSelector((state: RootState) => state.player);
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(initPlayer());
@@ -19,22 +22,20 @@ const App = () => {
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorPage message={error} />;
 
-  return <>
-    <div className="container" role="main">
-      {!encryptionKey && <h1>Loading...</h1>}
-      {encryptionKey && <>
-        <header>
-          <h1>Welcome to the 2025 Boilerplate! ({score})</h1>
-        </header>
-        <button
-          className="primary"
-          type="button"
-          onClick={() => dispatch(increment())}>
-          Next
-        </button>
-      </>}
-    </div>
-  </>;
+  return (
+    <>
+      {!encryptionKey && <LoadingSpinner />}
+      {encryptionKey && (
+        <Suspense fallback={<LoadingSpinner />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      )}
+    </>
+  );
 };
 
 export default App;

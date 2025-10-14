@@ -1,11 +1,16 @@
-import { BASE } from '../common/constants';
+import { BASE } from './shared/constants';
+import { DEFAULT_PORT } from './config/constants';
 import express from 'express';
 import ViteExpress from 'vite-express';
 import session from 'express-session';
-import { ensureAuthenticated, setupAuthentication } from './authentication';
+import passport from 'passport';
 import ejs from 'ejs';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { sessionConfig } from './config/session';
+import authRoutes from './routes/auth';
+import apiRoutes from './routes/api';
+import pageRoutes from './routes/pages';
 
 declare module 'express-session' {
   /* eslint-disable-next-line @typescript-eslint/no-empty-object-type */
@@ -18,7 +23,6 @@ declare module 'express-session' {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const DEFAULT_PORT = '3000';
 
 const setupMiddleware = (app: express.Application) => {
   app.set('trust proxy', 1); // trust first proxy
@@ -32,38 +36,29 @@ const setupMiddleware = (app: express.Application) => {
       cb(null, str);
     });
   });
-  app.set('views', `${__dirname}/pages`);
+  app.set('views', `${__dirname}/templates`);
   app.use(express.static(`${__dirname}/public`));
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
-  app.use(session({
-    secret: process.env.SESSION_SECRET ?? 'default_secret',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-    },
-  }));
+  app.use(session(sessionConfig));
+  app.use(passport.authenticate('session'));
 };
 
 const setupRoutes = (app: express.Application) => {
-  // page routes
-  app.get('/', ensureAuthenticated, (_, __, next) => {
-    next(); // pass to Vite
-  });
+  // Auth routes (login, logout)
+  app.use(authRoutes);
 
   // API routes
-  app.get('/key', ensureAuthenticated, (_, res) => {
-    res.send({ key: process.env.LOCAL_STORAGE_KEY });
-  });
+  app.use(apiRoutes);
+
+  // Page routes (handled by Vite/React)
+  app.use(pageRoutes);
 };
 
 const startServer = () => {
   const app = express();
 
   setupMiddleware(app);
-  setupAuthentication(app);
   setupRoutes(app);
 
   const port = parseInt(process.env.PORT ?? DEFAULT_PORT, BASE);

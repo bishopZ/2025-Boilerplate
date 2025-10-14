@@ -22,3 +22,4 @@ export const decrypt = (text: string, key: string) => {
     return '';
   }
 };
+
