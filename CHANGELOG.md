@@ -23,6 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 + React Router
 + Added a CHANGELOG
 + Added a .env template
++ Added a css reset
++ Added speculation rules for server-side pages
 
 ### Changed
 
