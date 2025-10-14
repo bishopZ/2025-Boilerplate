@@ -23,6 +23,8 @@ This boilerplate is right for you if:
 - Static Typing: TypeScript
 - UI Framework: React
 - State Management: Redux Toolkit
+- Routing: React Router
+- Design System: Chakra UI
 - React Error Boundary
 
 ### Backend
@@ -37,6 +39,10 @@ This boilerplate is right for you if:
 - Local Storage
 - Crypto Library: Crypto JS
 
+### Testing
+
+- E2E Testing: Cypress
+
 ### Linting and Formatting
 
 - Linter: ESLint
@@ -49,12 +55,48 @@ The reasoning for each item is included below.
 ### Development Setup
 
 1. Clone the repo, `git clone git@github.com:bishopZ/2025-Boilerplate.git`. `cd 2025-Boilerplate` into the repo directory.
-1. Create a file called `.env` in the root project folder.
-1. Add this to the file, `LOCAL_STORAGE_KEY="secret key"` and change the value to whatever you want.
-1. Add this to the files, `SESSION_SECRET="another secret key"` and change the value to whatever you want.
+1. Create a file called `.env` in the root project folder by copying the template: `cp .envTemplate .env`
+1. Edit `.env` and update the values:
+   - `LOCAL_STORAGE_KEY="your-secret-key"` - Used to encrypt client-side data
+   - `SESSION_SECRET="your-session-secret"` - Used to sign session cookies
 2. Run `npm install` in the project root folder.
 3. Run `npm run dev` to start the development server.
-3. On the Login screen, use `test` for both the email and password.
+4. On the Login screen, use `test` for both the email and password.
+
+### Running Tests
+
+- `npm run test:e2e` - Run Cypress tests in headless mode
+- `npm run test:e2e:open` - Open Cypress interactive test runner
+
+### Project Structure
+
+```
+src/
+├── client/                 # Frontend React application
+│   ├── components/
+│   │   ├── data/          # Redux store, reducers, and actions
+│   │   └── ui/            # Reusable UI components
+│   ├── pages/             # Page components (Home, About, etc.)
+│   ├── shared/            # Client-side utilities and constants
+│   ├── App.tsx            # Main app component with routing
+│   ├── main.tsx           # App entry point with providers
+│   └── index.css          # Global styles
+│
+├── server/                # Backend Node.js application
+│   ├── config/            # Configuration files (session, constants)
+│   ├── controllers/       # Route handlers (auth, api)
+│   ├── middleware/        # Custom middleware (authentication, etc.)
+│   ├── routes/            # Route definitions (auth, api, pages)
+│   ├── services/          # Business logic (auth, SEO)
+│   ├── shared/            # Server-side utilities and constants
+│   ├── templates/         # EJS templates for server-rendered pages
+│   └── main.ts            # Server entry point
+│
+cypress/                   # E2E tests
+├── e2e/                   # Test files
+```
+
+**Note on shared code:** The `client/shared` and `server/shared` folders are separate to avoid Vite bundling issues. Code that needs to be shared between client and server should be duplicated or refactored to work within the constraints of each environment.
 
 ### Server Setup with Heroku
 
@@ -83,7 +125,7 @@ Vite's ability to run client and server-side components simultaneously is a game
 
 ### EJS & SEO
 
-For easy setting of SEO meta tag values, I chose to use EJS templates on Node.js. While this approach might be replaced with SSR implementation if needed, it provides a lightweight solution for basic SEO needs.
+For easy setting of SEO meta tag values, I chose to use EJS templates on Node.js. While this approach might be replaced with SSR implementation if needed, it provides a lightweight solution for basic SEO needs. The server is organized into a clear MVC pattern with separate folders for config, controllers, middleware, routes, services, and templates. This structure makes it easy to add server-rendered pages (like admin panels, login screens, or landing pages) alongside your React SPA. Use EJS templates when you need server-side rendering for SEO, authentication flows, or pages that don't require client-side interactivity.
 
 ### Redux Toolkit
 
@@ -97,21 +139,234 @@ To ensure data persistence across browser refreshes and sessions, I've integrate
 
 By integrating Passport.js as an example login process, we can demonstrate best practices for authentication without compromising security or scalability. Future improvements will focus on implementing additional features like CSRF protection and login attempts limits, which may require a database solution.
 
+### React Router
+
+React Router enables seamless client-side navigation in single-page applications without full page reloads. By handling routing on the client side, the application feels faster and more responsive while maintaining clean, bookmarkable URLs. The boilerplate includes lazy loading of routes to optimize initial bundle size and improve performance.
+
+### Chakra UI
+
+Chakra UI provides a comprehensive design system with accessible, composable components that follow WAI-ARIA standards out of the box. Unlike heavier frameworks, Chakra offers excellent TypeScript support, a thoughtful API design, and powerful theming capabilities that make it easy to create consistent, professional interfaces without sacrificing flexibility. The component library strikes an ideal balance between providing enough structure to be productive while remaining customizable for unique design requirements.
+
+### Cypress
+
+Cypress provides reliable end-to-end testing with an excellent developer experience through its interactive test runner and automatic waiting. By including a basic Cypress setup with example tests, the boilerplate ensures developers can immediately verify critical user flows work as expected. E2E tests give confidence that authentication, navigation, and key features function correctly across the entire stack.
+
 ### ESlint
 
 I added a very through custom config file for ESLint. It's battle-tested and aims to speed development, ignore problems that aren't real, and maximize the rules that can be automatically fixed by ESLint.
 
-## Choosing a Design System
+## Customizing the Design System
 
-In today's fast-paced web development landscape, Design Systems have become an essential component of any project. By leveraging a well-crafted design system, developers can ensure consistency, efficiency, and scalability in their application.
+This boilerplate includes Chakra UI as a starting point, providing accessible components and a solid foundation for building modern interfaces. However, different applications have different design needs, and you may want to replace or customize the design system.
 
-While there are many excellent design systems available, including one in our boilerplate seemed like overkill. Different applications require distinct design approaches that may not align with the one-size-fits-all solution of an out-of-the-box boilerplate.
+Administrative interfaces may benefit from [Cloudscape's](https://cloudscape.design/) intuitive navigation and layout features. Marketing sites might be better suited to Github's [Primer](https://primer.style/) design system with its emphasis on eye-catching visuals and responsive design. Developer tools might prefer [Radix UI](https://www.radix-ui.com/) for its unstyled primitives.
 
-Administrative interfaces may benefit from [Cloudscape's](https://cloudscape.design/) intuitive navigation and layout features. While Marketing sites might be better suited to Github's [Primer](https://primer.style/) design system, with its emphasis on eye-catching visuals and responsive design.
+When selecting a design system, consider your project's goals and determine which system aligns best with your requirements. Choose one with a strong, active community and thorough documentation covering setup, customization, and best practices. The modular nature of this boilerplate makes it straightforward to replace Chakra UI with your preferred solution.
 
-When selecting a design system consider your project's goals and determine which design systems align best with your requirements. Choose a design system with a strong, active community and an extensive ecosystem of supporting tools, libraries, and documentation. Opt for a system with thorough documentation that covers every aspect, including setup, customization, and best practices. Then  select the design system that best suits your development team's experience level and skillset.
+To remove Chakra UI: uninstall the packages, remove the `ChakraProvider` from `src/client/main.tsx`, and update your page components to use your preferred styling approach.
 
-If you're uncertain about which design system to implement, refer to our example branch `with-chakra-ui`, where [Chakra UI](https://chakra-ui.com/) is used as a case study.
+
+
+# Available Scripts
+
+Quick reference guide for all available npm scripts in this boilerplate.
+
+## Development
+
+### `npm run dev`
+Starts the development server with hot module reloading.
+- Watches server files for changes
+- Automatically restarts server on changes
+- Runs on port 3000 by default (configurable via .env)
+- Uses nodemon for server watching
+- Uses Vite for client hot reloading
+
+**When to use:** Day-to-day development
+
+### `npm run type-check`
+Runs TypeScript compiler in check mode without emitting files.
+- Validates all TypeScript types
+- Checks for type errors across the entire codebase
+- Does not generate any output files
+
+**When to use:** Before committing, in CI/CD pipelines
+
+## Building
+
+### `npm run build`
+Creates a production-ready build.
+- Compiles TypeScript
+- Bundles client code with Vite
+- Optimizes and minifies assets
+- Outputs to `dist/` directory
+
+**When to use:** Before deploying to production
+
+### `npm run preview`
+Previews the production build locally.
+- Serves the built files from `dist/`
+- Useful for testing production builds before deploying
+
+**When to use:** After building, to verify production build works correctly
+
+## Running
+
+### `npm start`
+Starts the server in production mode.
+- Sets NODE_ENV=production
+- Serves built assets
+- No hot reloading or dev features
+
+**When to use:** In production environments (Heroku, AWS, etc.)
+
+## Code Quality
+
+### `npm run lint`
+Runs ESLint on the entire codebase.
+- Checks all TypeScript files
+- Reports style and code quality issues
+- Does not fix issues automatically
+
+**When to use:** To check for linting errors before committing
+
+### `npm run lint:fix`
+Runs ESLint and automatically fixes issues where possible.
+- Auto-fixes formatting issues
+- Auto-fixes some code quality issues
+- Reports unfixable issues
+
+**When to use:** Before committing, to clean up code automatically
+
+## Testing
+
+### `npm run test:e2e`
+Runs Cypress end-to-end tests in headless mode.
+- Runs all tests in `cypress/e2e/`
+- Generates screenshots on failure
+- Exits when complete
+
+**When to use:** In CI/CD pipelines, before deploying
+
+### `npm run test:e2e:open`
+Opens the Cypress interactive test runner.
+- Visual test runner with browser preview
+- Hot reloading of tests
+- Time travel debugging
+- Great for writing and debugging tests
+
+**When to use:** When writing or debugging E2E tests
+
+## Common Workflows
+
+### Starting a new feature
+```bash
+npm run dev
+# Edit code with hot reloading
+npm run lint:fix
+npm run type-check
+```
+
+### Before committing
+```bash
+npm run lint:fix
+npm run type-check
+npm run test:e2e  # Optional but recommended
+```
+
+### Preparing for deployment
+```bash
+npm run type-check
+npm run lint
+npm run test:e2e
+npm run build
+npm run preview  # Verify build works
+```
+
+### Deploying to production
+```bash
+# On your server or in CI/CD
+npm install
+npm run build
+npm start
+```
+
+## Development Server Requirements
+
+The dev server requires:
+- Node.js 22.20.0 or higher
+- npm 11.6.2 or higher
+- `.env` file with required environment variables
+
+## Testing Requirements
+
+E2E tests require:
+- Development server running (`npm run dev`)
+- Chrome, Firefox, or Edge browser installed
+- Tests expect server on http://localhost:3000
+
+## Customizing Scripts
+
+You can add custom scripts to `package.json`:
+
+```json
+{
+  "scripts": {
+    "custom-script": "your-command-here"
+  }
+}
+```
+
+Examples of useful custom scripts:
+- `"db:migrate"`: Run database migrations
+- `"db:seed"`: Seed database with test data
+- `"analyze"`: Analyze bundle size
+- `"test:unit"`: Run unit tests (when added)
+
+## Script Chaining
+
+You can run multiple scripts in sequence:
+
+```bash
+npm run lint && npm run type-check && npm run test:e2e
+```
+
+Or in parallel (using a tool like `concurrently`):
+
+```bash
+npx concurrently "npm:lint" "npm:type-check"
+```
+
+## Environment Variables
+
+Scripts use environment variables from `.env`:
+- `PORT`: Server port (default: 3000)
+- `NODE_ENV`: Environment (development/production)
+- `LOCAL_STORAGE_KEY`: Encryption key for local storage
+- `SESSION_SECRET`: Session signing secret
+
+## Troubleshooting
+
+### `npm run dev` fails
+- Check that `.env` file exists
+- Verify environment variables are set
+- Ensure port 3000 is not already in use
+
+### `npm run build` fails
+- Run `npm run type-check` to find TypeScript errors
+- Run `npm run lint` to find linting issues
+- Check console for specific error messages
+
+### `npm run test:e2e` fails
+- Ensure dev server is running
+- Check that tests expect correct base URL
+- Verify Cypress is installed correctly
+
+### Type check passes but lint fails
+- ESLint checks more than just types
+- Run `npm run lint:fix` to auto-fix many issues
+- Review ESLint config in `eslint.config.js`
+
+
 
 ## License
 

@@ -1,0 +1,20 @@
+# Environment Variables Template
+# Copy this file to .env and replace the placeholder values with your actual values
+
+# Local Storage Encryption Key
+# Used to encrypt data stored in the browser's localStorage
+# Replace with a strong, random string
+LOCAL_STORAGE_KEY="your-secret-key-here"
+
+# Session Secret
+# Used to sign the session ID cookie
+# Replace with a strong, random string
+SESSION_SECRET="your-session-secret-here"
+
+# Node Environment
+# Options: development, production
+NODE_ENV=development
+
+# Server Port (optional, defaults to 3000)
+# PORT=3000
+

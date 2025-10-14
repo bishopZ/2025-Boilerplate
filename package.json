@@ -3,7 +3,7 @@
   "description": "a local-first web app boilerplate for 2025",
   "author": "BishopZ",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,16 +16,22 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "preview": "vite preview",
-    "start": "NODE_ENV=production tsx src/server/main.ts"
+    "start": "NODE_ENV=production tsx src/server/main.ts",
+    "type-check": "tsc --noEmit",
+    "test:e2e": "cypress run",
+    "test:e2e:open": "cypress open"
   },
   "dependencies": {
+    "@chakra-ui/react": "3.27.1",
     "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
     "@reduxjs/toolkit": "2.9.0",
     "cookie-parser": "1.4.7",
     "crypto-js": "4.2.0",
     "ejs": "3.1.10",
     "express": "5.1.0",
     "express-session": "1.18.2",
+    "framer-motion": "12.23.24",
     "next-themes": "0.4.6",
     "passport": "0.7.0",
     "passport-local": "1.0.0",
@@ -34,6 +40,7 @@
     "react-error-boundary": "6.0.0",
     "react-icons": "5.5.0",
     "react-redux": "9.2.0",
+    "react-router-dom": "7.6.2",
     "tsx": "4.20.6",
     "typescript": "5.9.3",
     "vite-express": "0.21.1"
@@ -52,6 +59,7 @@
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "@vitejs/plugin-react": "5.0.4",
+    "cypress": "14.0.2",
     "eslint": "9.37.0",
     "eslint-plugin-react-dom": "1.48.4",
     "eslint-plugin-react-hooks": "7.0.0",

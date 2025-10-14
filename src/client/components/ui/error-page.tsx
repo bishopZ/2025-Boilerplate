@@ -1,23 +1,26 @@
+import { Box, Container, Heading, Text, Link } from '@chakra-ui/react';
 
 const DEFAULT_CONTACT = 'support@domain.com';
 const DEFAULT_TITLE = 'Something went wrong';
 
 export const ErrorPage = ({ message }: { message: string }) => {
   return (
-    <div className="container" role="main">
-      <h1>
-        {DEFAULT_TITLE}
-      </h1>
-      <p>
-        Please contact the site administrator at{' '}
-        <a href={`mailto:${DEFAULT_CONTACT}`}>
-          {DEFAULT_CONTACT}
-        </a>
-        .
-      </p>
-      <p>
-        {message}
-      </p>
-    </div>
+    <Container maxW="container.md" py={8}>
+      <Box textAlign="center">
+        <Heading as="h1" size="2xl" mb={4} color="red.500">
+          {DEFAULT_TITLE}
+        </Heading>
+        <Text fontSize="lg" mb={4}>
+          Please contact the site administrator at{' '}
+          <Link href={`mailto:${DEFAULT_CONTACT}`} color="blue.500">
+            {DEFAULT_CONTACT}
+          </Link>
+          .
+        </Text>
+        <Text fontSize="md" color="gray.600">
+          {message}
+        </Text>
+      </Box>
+    </Container>
   );
 };
